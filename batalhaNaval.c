@@ -46,11 +46,11 @@ int main() {
     
     //exibir o tabuleiro no console:
     printf("Tabuleiro:\n");
-    for (int i = 0; i < linhas ; i++)
+    for(int i = 0; i < linhas ; i++)
     {
-        for (int j = 0; j < colunas; j++)
+        for(int j = 0; j < colunas; j++)
         {
-            printf("%d ", tabuleiro[i][j]);
+           printf("%d ", tabuleiro[i][j]);
         }
         printf("\n");
     }
@@ -72,9 +72,9 @@ int main() {
     // 1 1 1 1 1
     int habilidadeCone[L][C] = {0};
     
-    for (int i = 0; i < L; i++)
+    for(int i = 0; i < L; i++)
     {
-        for (int j = 0; j < C; j++)
+        for(int j = 0; j < C; j++)
         {
             if (i == 0 && j == 2) // Posição do cone
             {
@@ -103,7 +103,7 @@ int main() {
     // 0 0 1 0 0
     int habilidadeOctaedro[L][C] = {0};
 
-     for (int i = 0; i < L; i++)
+     for(int i = 0; i < L; i++)
      {
         for (int j = 0; j < C; j++)
         {
@@ -135,7 +135,7 @@ int main() {
     // 0 0 1 0 0
     int habilidadeCruz[L][C] = {0};
 
-    for (int i = 0; i < L; i++)
+    for(int i = 0; i < L; i++)
     {
         for (int j = 0; j < C; j++)
         {
@@ -168,25 +168,32 @@ int main() {
   int origemx = 4; // linha
   int origemy = 4; // coluna
 
-  for (int i = 0; i < L; i++)
-  {
-    for (int j = 0; j < C; j++)
-    {
-        int linha_tabuleiro = origemx + i - 1; // linha do tabuleiro
-        int coluna_tabuleiro = origemy + j - 2; // coluna do tabuleiro
+    for(int i = 0; i < L; i++)
+   {
+        for (int j = 0; j < C; j++)
+        {
+          int linha_tabuleiro = origemx + i - 1; // linha do tabuleiro
+          int coluna_tabuleiro = origemy + j - 2; // coluna do tabuleiro
 
-        if(linha_tabuleiro >= 0 && linha_tabuleiro < linhas && coluna_tabuleiro >= 0 && coluna_tabuleiro < colunas){
-            if(habilidadeCruz[i][j] == 1 &&  tabuleiro[linha_tabuleiro][coluna_tabuleiro] == 0){ 
-                tabuleiro[linha_tabuleiro][coluna_tabuleiro] = 5; // marca a posição atingida
-            }
+            if(linha_tabuleiro >= 0 && linha_tabuleiro < linhas && coluna_tabuleiro >= 0 && coluna_tabuleiro < colunas){
+
+                if(habilidadeCruz[i][j] == 1){
+                    if(tabuleiro[linha_tabuleiro][coluna_tabuleiro] == 3) // se atingir um navio
+                    {
+                     tabuleiro[linha_tabuleiro][coluna_tabuleiro] = 3; // marca a posição atingida
+                    }
+                      else if(tabuleiro[linha_tabuleiro][coluna_tabuleiro] == 0) // se atingir uma posição vazia
+                    {
+                       tabuleiro[linha_tabuleiro][coluna_tabuleiro] = 5; // marca a posição atingida
+                    }
+                }
+            } 
         }
-
     }
-  }
   
  //tabuleiro com a habilidade cruz aplicada:
   printf("Tabuleiro com habilidade cruz aplicada:\n");
-  for (int i = 0; i < linhas ; i++)
+  for(int i = 0; i < linhas ; i++)
   {
       for (int j = 0; j < colunas; j++)
       {
@@ -194,6 +201,7 @@ int main() {
       }
       printf("\n");
   }
-
+  
     return 0;
+   
 }
